@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: wadi-inventory
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SYNC_API_KEY
+        generateValue: true
+      - key: NODE_ENV
+        value: production
