@@ -46,4 +46,44 @@ router.post('/', requireRole('manager', 'accountant'), async (req, res) => {
   }
 });
 
+// Bulk stock update from an imported Excel sheet — treats each row as a fresh
+// inventory count (type 'adjust'): sets the product's stock to the given qty.
+router.post('/bulk-import', requireRole('manager', 'accountant'), async (req, res) => {
+  const { rows } = req.body || {};
+  if (!Array.isArray(rows) || !rows.length) return res.status(400).json({ error: 'invalid_input' });
+  const results = [];
+  for (const r of rows) {
+    const product_id = String(r.product_id || '').trim();
+    const qty = Number(r.qty);
+    if (!product_id || Number.isNaN(qty) || qty < 0) {
+      results.push({ product_id: product_id || null, ok: false, error: 'صف غير صالح' });
+      continue;
+    }
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      const { rows: prows } = await client.query('SELECT * FROM products WHERE id = $1 FOR UPDATE', [product_id]);
+      const p = prows[0];
+      if (!p) {
+        await client.query('ROLLBACK');
+        results.push({ product_id, ok: false, error: 'الصنف غير موجود بالنظام' });
+        continue;
+      }
+      await client.query('UPDATE products SET stock = $1, updated_at = now() WHERE id = $2', [qty, product_id]);
+      await client.query(
+        `INSERT INTO movements (product_id, type, qty, note, created_by) VALUES ($1,'adjust',$2,$3,$4)`,
+        [product_id, qty, r.note || 'تحديث مخزون جماعي (استيراد Excel)', req.user.id]
+      );
+      await client.query('COMMIT');
+      results.push({ product_id, ok: true, name: p.name, new_stock: qty });
+    } catch (e) {
+      await client.query('ROLLBACK');
+      results.push({ product_id, ok: false, error: 'خطأ غير متوقع' });
+    } finally {
+      client.release();
+    }
+  }
+  res.json({ results, succeeded: results.filter(r => r.ok).length, failed: results.filter(r => !r.ok).length });
+});
+
 module.exports = router;

@@ -248,3 +248,41 @@
   .perf-note{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3);margin-top:10px;}
   .perf-note svg{width:13px;height:13px;flex:none;}
   .footer-note{font-size:11px;color:var(--ink-3);text-align:center;margin-top:28px;line-height:1.8;}
+
+  /* ---------- brand logo (light/dark aware) ---------- */
+  .brand-mark{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;}
+  .brand-mark.has-logo{background:none;box-shadow:none;}
+  .brand-mark img{max-width:100%;max-height:100%;object-fit:contain;}
+  .logo-light{display:block;} .logo-dark{display:none;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .logo-light{display:none;}
+    :root:not([data-theme="light"]) .logo-dark{display:block;}
+  }
+  :root[data-theme="dark"] .logo-light{display:none;}
+  :root[data-theme="dark"] .logo-dark{display:block;}
+  .login-mark{width:auto;height:auto;background:none;box-shadow:none;margin:0 auto 14px;}
+  .login-mark img{max-width:100%;height:88px;object-fit:contain;display:block;margin:0 auto;}
+  .logo-preview{width:120px;height:120px;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--glass-border);border-radius:16px;background:var(--surface-solid);overflow:hidden;flex:none;}
+  .logo-preview img{max-width:88%;max-height:88%;object-fit:contain;}
+
+  /* ---------- language toggle ---------- */
+  .lang-toggle{display:flex;align-items:center;gap:6px;padding:6px 6px;border-radius:100px;background:var(--surface);border:1px solid var(--glass-border);width:fit-content;}
+  .lang-toggle button{border:none;background:none;padding:5px 11px;border-radius:100px;font-size:11.5px;font-weight:700;color:var(--ink-3);cursor:pointer;}
+  .lang-toggle button.active{background:var(--accent);color:var(--accent-ink);}
+
+  /* ---------- welcome banner ---------- */
+  .welcome-line{font-size:16px;font-weight:600;color:var(--ink);margin:2px 0 16px;}
+  .welcome-line b{color:var(--accent);}
+
+  /* ---------- date range / import-export controls ---------- */
+  input.filter[type="date"]{background:var(--surface-solid);border:1px solid var(--glass-border);border-radius:100px;padding:9px 14px;font-size:12.5px;color:var(--ink-2);outline:none;}
+  .import-input{display:none;}
+
+  /* ---------- bulk items ---------- */
+  .unit-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:100px;font-size:11.5px;font-weight:700;}
+  .unit-pallet{background:var(--accent-soft);color:var(--accent);}
+  .unit-carton{background:var(--c1);color:#fff;opacity:.88;}
+
+  /* ---------- ltr (English) typography ---------- */
+  [dir="ltr"] body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;}
+  [dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3,[dir="ltr"] .display{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}

@@ -11,6 +11,8 @@ const movementsRoutes = require('./routes/movements');
 const salesRoutes = require('./routes/sales');
 const reportsRoutes = require('./routes/reports');
 const syncRoutes = require('./routes/sync');
+const settingsRoutes = require('./routes/settings');
+const bulkProductsRoutes = require('./routes/bulkProducts');
 
 const app = express();
 app.use(express.json({ limit: '2mb' }));
@@ -23,6 +25,8 @@ app.use('/api/movements', movementsRoutes);
 app.use('/api/sales', salesRoutes);
 app.use('/api/reports', reportsRoutes);
 app.use('/api/sync', syncRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/bulk-products', bulkProductsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 

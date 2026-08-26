@@ -76,6 +76,20 @@ CREATE TABLE IF NOT EXISTS store_sales_snapshot (
   period TEXT NOT NULL,
   data JSONB NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS bulk_products (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  category TEXT NOT NULL DEFAULT 'غير مصنف',
+  unit_type TEXT NOT NULL CHECK (unit_type IN ('pallet','carton')),
+  units_per_bundle NUMERIC NOT NULL DEFAULT 1,
+  bundle_count NUMERIC NOT NULL DEFAULT 0,
+  retail_price_ref NUMERIC,
+  notes TEXT,
+  created_by UUID REFERENCES users(id),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_bulk_products_name ON bulk_products(name);
 `;
 
 async function initSchema() {
