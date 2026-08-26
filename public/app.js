@@ -103,6 +103,11 @@ const I18N = {
     'settings.active':'نشط','settings.disabled':'معطّل','settings.managerOnlyTitle':'هذه الصفحة للمدير فقط','settings.managerOnlySub':'لا تملك صلاحية الوصول لإعدادات النظام.',
     'settings.logoTitle':'شعار المؤسسة','settings.logoHint':'الشعار الحالي المعروض في النظام (الشعار الرسمي بشكل افتراضي). يمكنك رفع شعار مخصص ليحل محله.',
     'settings.uploadLogo':'رفع شعار جديد','settings.resetLogo':'استعادة الشعار الافتراضي',
+    'unit.piece':'حبة','unit.carton':'كرتون','unit.pallet':'باله','unit.type':'نوع الوحدة','unit.perBundle':'الشد (عدد القطع في الوحدة)',
+    'th.unit':'الوحدة','th.totalPieces':'إجمالي القطع','addProduct.notLinkedHint':'الأصناف من نوع كرتون/باله لا يتم ربطها أو مزامنتها مع سلة تلقائياً.',
+    'channel.store':'المتجر','channel.warehouse':'المستودع','th.channel':'وجهة الصرف','sale.channel':'وجهة الصرف','sale.channelHint':'حدد إذا كانت هذه الفاتورة لبيع من المتجر أو من المستودع — سيتم خصم الكمية من المخزون في الحالتين.',
+    'dash.storeOutToday':'صرف للمتجر اليوم','dash.warehouseOutToday':'صرف من المستودع اليوم','dash.invoicesCount':'{n} فاتورة',
+    'print.invoiceTitle':'فاتورة مبيعات','print.date':'التاريخ','print.customer':'العميل','print.channel':'وجهة الصرف','print.item':'الصنف','print.qty':'الكمية','print.price':'السعر','print.total':'الإجمالي','print.grandTotal':'الإجمالي الكلي','print.printBtn':'طباعة A4',
     'bulk.hint':'أصناف تُباع بالباله أو الكرتون بالجملة — تُعرض هنا فقط لمتابعة المخزون الداخلي، ولا تتم مزامنتها مع متجركم على سلة.',
     'bulk.add':'إضافة صنف جملة','bulk.unitType':'نوع الوحدة','bulk.unitsPerBundle':'الشد (قطعة/وحدة)','bulk.bundleCount':'عدد الوحدات المتوفرة',
     'bulk.totalUnits':'إجمالي القطع','bulk.refPrice':'سعر التجزئة المرجعي','bulk.pallet':'باله','bulk.carton':'كرتون',
@@ -131,6 +136,7 @@ const I18N = {
     'move.qtyAfterCount':'الكمية الفعلية بعد الجرد','move.qty':'الكمية','move.noteOptional':'ملاحظة (اختياري)','move.notePlaceholder':'مثال: طلب رقم 1042','move.save':'حفظ الحركة',
     'add.title':'إضافة صنف غير مدرج','add.sub':'أدخل رقم المنتج كما يظهر في رابط المنتج بلوحة تحكم سلة حتى تتم مزامنة كمياته بشكل صحيح.',
     'add.name':'اسم الصنف','add.sallaId':'رقم المنتج في سلة','add.category':'الفئة','add.categoryPlaceholder':'مثال: خيام الرحلات','add.priceOptional':'السعر (اختياري)','add.openingQty':'الكمية الافتتاحية','add.save':'إضافة الصنف',
+    'add.sallaIdOptionalHint':'اختياري لأصناف الكرتون/الباله — لن يتم ربط هذا الصنف بسلة.',
     'sale.title':'فاتورة بيع جديدة','sale.sub':'أصناف الفاتورة تُخصم مباشرة من مخزون المستودع وتُزامن مع سلة تلقائياً.',
     'sale.invoiceNo':'رقم الفاتورة','sale.customerOptional':'اسم العميل (اختياري)','sale.items':'أصناف الفاتورة','sale.addRow':'إضافة صنف آخر',
     'sale.searchPlaceholder':'ابحث عن صنف بالاسم أو الرقم…','sale.removeRow':'حذف السطر','sale.total':'الإجمالي','sale.save':'حفظ الفاتورة',
@@ -197,6 +203,11 @@ const I18N = {
     'settings.active':'Active','settings.disabled':'Disabled','settings.managerOnlyTitle':'This page is for managers only','settings.managerOnlySub':'You do not have permission to access system settings.',
     'settings.logoTitle':'Company Logo','settings.logoHint':'The logo currently shown across the system (the official logo by default). You can upload a custom logo to replace it.',
     'settings.uploadLogo':'Upload New Logo','settings.resetLogo':'Restore Default Logo',
+    'unit.piece':'Piece','unit.carton':'Carton','unit.pallet':'Pallet','unit.type':'Unit Type','unit.perBundle':'Units per Bundle',
+    'th.unit':'Unit','th.totalPieces':'Total Pieces','addProduct.notLinkedHint':'Carton/pallet items are not linked or synced to Salla automatically.',
+    'channel.store':'Store','channel.warehouse':'Warehouse','th.channel':'Channel','sale.channel':'Channel','sale.channelHint':'Choose whether this invoice is a sale from the store or from the warehouse — stock is deducted either way.',
+    'dash.storeOutToday':'Store Outbound Today','dash.warehouseOutToday':'Warehouse Outbound Today','dash.invoicesCount':'{n} invoices',
+    'print.invoiceTitle':'Sales Invoice','print.date':'Date','print.customer':'Customer','print.channel':'Channel','print.item':'Item','print.qty':'Qty','print.price':'Price','print.total':'Total','print.grandTotal':'Grand Total','print.printBtn':'Print A4',
     'bulk.hint':'Items sold by pallet or carton in bulk — shown here only for internal stock tracking, and not synced to your Salla store.',
     'bulk.add':'Add Bulk Item','bulk.unitType':'Unit Type','bulk.unitsPerBundle':'Units per Bundle','bulk.bundleCount':'Bundles Available',
     'bulk.totalUnits':'Total Units','bulk.refPrice':'Reference Retail Price','bulk.pallet':'Pallet','bulk.carton':'Carton',
@@ -225,6 +236,7 @@ const I18N = {
     'move.qtyAfterCount':'Actual quantity after count','move.qty':'Quantity','move.noteOptional':'Note (optional)','move.notePlaceholder':'e.g. Order #1042','move.save':'Save Movement',
     'add.title':'Add Unlisted Item','add.sub':'Enter the product ID as it appears in the product link on the Salla dashboard so its quantity syncs correctly.',
     'add.name':'Item Name','add.sallaId':'Product ID on Salla','add.category':'Category','add.categoryPlaceholder':'e.g. Camping Tents','add.priceOptional':'Price (optional)','add.openingQty':'Opening Quantity','add.save':'Add Item',
+    'add.sallaIdOptionalHint':'Optional for carton/pallet items — this item will not be linked to Salla.',
     'sale.title':'New Sale Invoice','sale.sub':'Invoice items are deducted directly from warehouse stock and synced with Salla automatically.',
     'sale.invoiceNo':'Invoice Number','sale.customerOptional':'Customer Name (optional)','sale.items':'Invoice Items','sale.addRow':'Add Another Item',
     'sale.searchPlaceholder':'Search for an item by name or ID…','sale.removeRow':'Remove Row','sale.total':'Total','sale.save':'Save Invoice',
@@ -256,7 +268,7 @@ function setLang(l){
 function tabTitle(key){
   return {
     dashboard:t('nav.dashboard'), stock:t('nav.stock'), sales:t('nav.sales'), movements:t('nav.movements'),
-    store:t('title.store'), reports:t('title.reports'), sync:t('title.sync'), settings:t('nav.settings'), bulk:t('title.bulk'),
+    store:t('title.store'), reports:t('title.reports'), sync:t('title.sync'), settings:t('nav.settings'),
   }[key] || '';
 }
 function roleLabel(role){ return {manager:t('role.manager'), accountant:t('role.accountant'), user:t('role.user')}[role] || role; }
@@ -284,7 +296,7 @@ async function api(path, opts={}){
 /* ============ STATE ============ */
 let me = null;
 let appLogo = null;
-let products = [], movements = [], sales = [], summary = {}, categories = [], topProducts = [], lowStock = [], storeSales = null, users = [], bulkProducts = [];
+let products = [], movements = [], sales = [], summary = {}, categories = [], topProducts = [], lowStock = [], storeSales = null, users = [];
 let ui = { tab:'dashboard', search:'', catFilter:'', stockFilter:'', modal:null, reportFrom:'', reportTo:'' };
 
 function todayStr(){ return new Date().toISOString().slice(0,10); }
@@ -325,7 +337,6 @@ async function loadAll(){
     api('/api/reports/top-products').then(d=>topProducts=d),
     api('/api/reports/low-stock').then(d=>lowStock=d),
     api('/api/reports/store-sales').then(d=>storeSales=d),
-    api('/api/bulk-products').then(d=>bulkProducts=d),
   ];
   if(me.role==='manager') calls.push(api('/api/users').then(d=>users=d));
   await Promise.all(calls);
@@ -375,7 +386,6 @@ function navItems(){
   const items = [
     {key:'dashboard', label:t('nav.dashboard'), icon:'home'},
     {key:'stock', label:t('nav.stock'), icon:'box'},
-    {key:'bulk', label:t('nav.bulk'), icon:'layers'},
     {key:'sales', label:t('nav.sales'), icon:'receipt'},
     {key:'movements', label:t('nav.movements'), icon:'list'},
     {key:'store', label:t('nav.store'), icon:'storeline'},
@@ -438,7 +448,6 @@ function updateView(){ const v=document.getElementById('view'); if(v) v.innerHTM
 function renderView(){
   if(ui.tab==='dashboard') return viewDashboard();
   if(ui.tab==='stock') return viewStock();
-  if(ui.tab==='bulk') return viewBulkProducts();
   if(ui.tab==='sales') return viewSales();
   if(ui.tab==='movements') return viewMovements();
   if(ui.tab==='store') return viewStore();
@@ -481,7 +490,28 @@ function viewDashboard(){
   const lowHtml = lowStock.length? `<table><thead><tr><th>${t('th.item')}</th><th>${t('th.category')}</th><th class="num">${t('th.remaining')}</th><th class="num">${t('th.minThreshold')}</th></tr></thead><tbody>
     ${lowStock.slice(0,6).map(p=>`<tr><td class="prod-name">${escHtml(p.name)}</td><td class="muted">${escHtml(p.category)}</td><td class="num" style="color:${p.stock<=0?'var(--crit)':'var(--warn)'};font-weight:700;">${fmtNum(p.stock)}</td><td class="num muted">${fmtNum(p.threshold)}</td></tr>`).join('')}
     </tbody></table>` : emptyState('check',t('empty.noLowStockTitle'),t('empty.noLowStockSub'));
-  return `${welcome}${kpis}${onboarding}
+  const storeOut = summary.today_store_out || {invoices:0, qty:0, value:0};
+  const whOut = summary.today_warehouse_out || {invoices:0, qty:0, value:0};
+  const channelStats = `
+  <div class="grid row2" style="margin-top:16px;">
+    <div class="glass card">
+      <div class="card-head"><div class="card-title">${t('dash.storeOutToday')}</div></div>
+      <div class="grid row-eq">
+        <div class="glass kpi"><div class="kpi-icon" style="background:var(--good-soft);color:var(--good);">${icon('storeline',18)}</div><div class="kpi-val">${fmtNum(storeOut.qty)}</div><div class="kpi-label">${t('th.qty')}</div></div>
+        <div class="glass kpi"><div class="kpi-icon">${icon('receipt',18)}</div><div class="kpi-val">${fmtNum(storeOut.invoices)}</div><div class="kpi-label">${t('th.invoiceNo')}</div></div>
+        <div class="glass kpi"><div class="kpi-icon">${icon('check',18)}</div><div class="kpi-val">${fmtNum(storeOut.value)} SAR</div><div class="kpi-label">${t('th.total')}</div></div>
+      </div>
+    </div>
+    <div class="glass card">
+      <div class="card-head"><div class="card-title">${t('dash.warehouseOutToday')}</div></div>
+      <div class="grid row-eq">
+        <div class="glass kpi"><div class="kpi-icon">${icon('box',18)}</div><div class="kpi-val">${fmtNum(whOut.qty)}</div><div class="kpi-label">${t('th.qty')}</div></div>
+        <div class="glass kpi"><div class="kpi-icon">${icon('receipt',18)}</div><div class="kpi-val">${fmtNum(whOut.invoices)}</div><div class="kpi-label">${t('th.invoiceNo')}</div></div>
+        <div class="glass kpi"><div class="kpi-icon">${icon('check',18)}</div><div class="kpi-val">${fmtNum(whOut.value)} SAR</div><div class="kpi-label">${t('th.total')}</div></div>
+      </div>
+    </div>
+  </div>`;
+  return `${welcome}${kpis}${onboarding}${channelStats}
   <div class="grid row2" style="margin-top:16px;">
     <div class="glass card"><div class="card-head"><div class="card-title">${t('chart.movement14')}</div></div>${areaChart()}</div>
     <div class="glass card"><div class="card-head"><div><div class="card-title">${t('chart.catDist')}</div><div class="card-sub">${t('chart.catDistSub')}</div></div></div>${donut}</div>
@@ -533,22 +563,30 @@ function viewStock(){
     <div id="stock-results">${renderStockRows()}</div>
   </div>`;
 }
+function unitLabel(unitType){
+  return unitType==='pallet'? t('unit.pallet') : unitType==='carton'? t('unit.carton') : t('unit.piece');
+}
 function renderStockRows(){
   const list = filteredProducts();
   if(!list.length) return emptyState('search',t('empty.noResultsTitle'),t('empty.noResultsSub'));
   return `<div style="overflow-x:auto;"><table><thead><tr>
-    <th>${t('th.item')}</th><th>${t('th.category')}</th><th class="num">${t('th.price')}</th><th class="num">${t('th.warehouseQty')}</th><th>${t('th.status')}</th><th></th>
+    <th>${t('th.item')}</th><th>${t('th.category')}</th><th>${t('th.unit')}</th><th class="num">${t('th.price')}</th><th class="num">${t('th.warehouseQty')}</th><th class="num">${t('th.totalPieces')}</th><th>${t('th.status')}</th><th></th>
   </tr></thead><tbody>
   ${list.map(p=>{
     const st = stockStatus(p);
+    const unitType = p.unit_type || 'piece';
+    const bundle = Number(p.units_per_bundle||1);
+    const totalPieces = unitType==='piece' ? null : (p.stock===null? null : Number(p.stock)*bundle);
     return `<tr>
       <td><div class="prod-cell">
         <div class="cat-icon" style="background:color-mix(in srgb, ${catColor(p.cat_rank)} 18%, transparent);color:${catColor(p.cat_rank)};">${icon(p.icon,15)}</div>
         <div><div class="prod-name">${escHtml(p.name)}</div><div class="prod-meta">#${p.id}</div></div>
       </div></td>
       <td class="muted">${escHtml(p.category)}</td>
+      <td><span class="unit-badge ${unitType==='pallet'?'unit-pallet':unitType==='carton'?'unit-carton':''}">${unitLabel(unitType)}</span></td>
       <td class="num">${fmtNum(p.price)} SAR</td>
       <td class="num" style="font-weight:700;">${fmtNum(p.stock)}</td>
+      <td class="num muted">${totalPieces===null? '—' : fmtNum(totalPieces)}</td>
       <td><span class="pill ${st.cls}">${icon(st.key==='ok'?'check':st.key==='none'?'edit':'alert',11)} ${st.label}</span></td>
       <td><button class="btn btn-sm btn-ghost" data-quick-move="${p.id}" ${canWrite()?'':'disabled'}>${icon('edit',13)} ${t('stock.move')}</button></td>
     </tr>`;
@@ -556,40 +594,6 @@ function renderStockRows(){
   </tbody></table></div>`;
 }
 function updateStockResults(){ const el=document.getElementById('stock-results'); if(el) el.innerHTML = renderStockRows(); }
-
-/* ============ BULK ITEMS (pallet / carton) ============ */
-function viewBulkProducts(){
-  const canEdit = canWrite();
-  return `
-  <div class="glass card">
-    <div class="controls-row">
-      <span class="muted" style="font-size:12px;">${t('bulk.hint')}</span>
-      <span style="flex:1;"></span>
-      ${canEdit? `<button class="btn btn-sm btn-accent" id="open-bulk">${icon('plus',14)} ${t('bulk.add')}</button>` : ''}
-    </div>
-    ${bulkProducts.length? `<div style="overflow-x:auto;"><table><thead><tr>
-      <th>${t('th.item')}</th><th>${t('th.category')}</th><th>${t('bulk.unitType')}</th>
-      <th class="num">${t('bulk.unitsPerBundle')}</th><th class="num">${t('bulk.bundleCount')}</th>
-      <th class="num">${t('bulk.totalUnits')}</th><th class="num">${t('bulk.refPrice')}</th><th>${t('th.notes')}</th>
-      ${canEdit? `<th></th>`:''}
-    </tr></thead><tbody>
-    ${bulkProducts.map(b=>`<tr>
-      <td class="prod-name">${escHtml(b.name)}</td>
-      <td class="muted">${escHtml(b.category)}</td>
-      <td><span class="unit-badge ${b.unit_type==='pallet'?'unit-pallet':'unit-carton'}">${b.unit_type==='pallet'?t('bulk.pallet'):t('bulk.carton')}</span></td>
-      <td class="num">${fmtNum(b.units_per_bundle)}</td>
-      <td class="num" style="font-weight:700;">${fmtNum(b.bundle_count)}</td>
-      <td class="num">${fmtNum(Number(b.units_per_bundle||0)*Number(b.bundle_count||0))}</td>
-      <td class="num muted">${b.retail_price_ref!=null? fmtNum(b.retail_price_ref)+' SAR':'—'}</td>
-      <td class="muted">${escHtml(b.notes||'—')}</td>
-      ${canEdit? `<td><div class="user-row-actions">
-        <button class="btn btn-sm btn-ghost" data-edit-bulk="${b.id}">${icon('edit',13)}</button>
-        <button class="btn btn-sm btn-ghost" data-delete-bulk="${b.id}">${icon('trash',13)}</button>
-      </div></td>`:''}
-    </tr>`).join('')}
-    </tbody></table></div>` : emptyState('layers', t('bulk.emptyTitle'), t('bulk.emptySub'))}
-  </div>`;
-}
 
 /* ============ SALES ============ */
 function nextInvoiceNo(){ return 'INV-' + String(sales.length+1).padStart(4,'0'); }
@@ -611,12 +615,13 @@ function viewSales(){
       <button class="btn btn-sm btn-accent" id="open-sale" ${canWrite()?'':'disabled'}>${icon('plus',14)} ${t('sales.newSale')}</button>
     </div>
     ${sales.length? `<div style="overflow-x:auto;"><table><thead><tr>
-      <th>${t('th.invoiceNo')}</th><th>${t('th.date')}</th><th>${t('th.customer')}</th><th class="num">${t('th.itemCount')}</th><th class="num">${t('th.total')}</th><th>${t('th.status')}</th><th></th>
+      <th>${t('th.invoiceNo')}</th><th>${t('th.date')}</th><th>${t('th.customer')}</th><th>${t('th.channel')}</th><th class="num">${t('th.itemCount')}</th><th class="num">${t('th.total')}</th><th>${t('th.status')}</th><th></th>
     </tr></thead><tbody>
     ${sales.map(s=>`<tr>
         <td class="prod-name">${escHtml(s.invoice_no)}</td>
         <td class="muted" style="white-space:nowrap;">${fmtDate(s.ts)}</td>
         <td class="muted">${escHtml(s.customer||'—')}</td>
+        <td><span class="pill ${s.channel==='store'?'pill-good':'pill-muted'}">${s.channel==='store'?t('channel.store'):t('channel.warehouse')}</span></td>
         <td class="num">${s.item_count}</td>
         <td class="num" style="font-weight:700;">${fmtNum(s.total)} SAR</td>
         <td>${s.synced? `<span class="pill pill-good">${icon('check',11)} ${t('sales.synced')}</span>` : `<span class="pill pill-muted">${icon('clock',11)} ${t('sales.pending')}</span>`}</td>
@@ -867,7 +872,6 @@ function renderOverlay(){
   else if(ui.modal.type==='sale') root.innerHTML = saleModal();
   else if(ui.modal.type==='saleView') root.innerHTML = saleViewModal();
   else if(ui.modal.type==='user') root.innerHTML = userModal();
-  else if(ui.modal.type==='bulkProduct') root.innerHTML = bulkProductModal();
   else if(ui.modal.type==='importResult') root.innerHTML = importResultModal();
   else root.innerHTML='';
 }
@@ -905,6 +909,8 @@ function moveSuggestions(){
   return list.map(p=>`<div class="suggest-item" data-pick="${p.id}">${escHtml(p.name)} <span class="muted">#${p.id}</span></div>`).join('');
 }
 function addProductModal(){
+  const utype = ui.modal.unitType || 'piece';
+  const isBulkUnit = utype!=='piece';
   return `
   <div class="overlay" id="overlay-bg">
     <div class="glass modal">
@@ -912,7 +918,17 @@ function addProductModal(){
       <h3>${t('add.title')}</h3>
       <div class="sub">${t('add.sub')}</div>
       <div class="field"><label>${t('add.name')}</label><input id="np-name" /></div>
-      <div class="field"><label>${t('add.sallaId')}</label><input id="np-id" inputmode="numeric" /></div>
+      <div class="field"><label>${t('unit.type')}</label>
+        <div class="seg" id="unit-type-seg">
+          <button type="button" data-utype="piece" class="${utype==='piece'?'active':''}">${t('unit.piece')}</button>
+          <button type="button" data-utype="carton" class="${utype==='carton'?'active':''}">${t('unit.carton')}</button>
+          <button type="button" data-utype="pallet" class="${utype==='pallet'?'active':''}">${t('unit.pallet')}</button>
+        </div>
+      </div>
+      ${isBulkUnit? `<div class="field"><label>${t('unit.perBundle')}</label><input type="number" min="1" id="np-units-per-bundle" value="1" /></div>` : ''}
+      <div class="field"><label>${t('add.sallaId')}</label><input id="np-id" inputmode="numeric" />
+        ${isBulkUnit? `<div class="muted" style="font-size:12px;margin-top:4px;">${t('add.sallaIdOptionalHint')}</div>` : ''}
+      </div>
       <div class="field"><label>${t('add.category')}</label><input id="np-cat" placeholder="${t('add.categoryPlaceholder')}" /></div>
       <div class="field"><label>${t('add.priceOptional')}</label><input id="np-price" type="number" min="0" /></div>
       <div class="field"><label>${t('add.openingQty')}</label><input id="np-qty" type="number" min="0" /></div>
@@ -951,6 +967,14 @@ function saleModal(){
         <div class="field"><label>${t('sale.invoiceNo')}</label><input id="sale-invoice-no" value="${escAttr(ui.modal.invoice_no)}" /></div>
         <div class="field"><label>${t('sale.customerOptional')}</label><input id="sale-customer" value="${escAttr(ui.modal.customer||'')}" /></div>
       </div>
+      <div class="field">
+        <label>${t('sale.channel')}</label>
+        <div class="seg" id="sale-channel-seg">
+          <button type="button" data-channel="warehouse" class="${(ui.modal.channel||'warehouse')==='warehouse'?'active':''}">${t('channel.warehouse')}</button>
+          <button type="button" data-channel="store" class="${ui.modal.channel==='store'?'active':''}">${t('channel.store')}</button>
+        </div>
+        <div class="hint" style="font-size:11px;color:var(--ink-3);margin-top:4px;">${t('sale.channelHint')}</div>
+      </div>
       <label style="font-size:12.5px;font-weight:600;color:var(--ink-2);">${t('sale.items')}</label>
       <div id="sale-rows" style="margin-top:6px;">${rowsHtml}</div>
       <div class="hint" style="font-size:11px;color:var(--ink-3);margin:6px 0 0;">${t('sale.priceHint')}</div>
@@ -982,14 +1006,56 @@ function saleViewModal(){
     <div class="glass modal">
       <button class="close-x" data-close>${icon('x',14)}</button>
       <h3>${LANG==='en'?'Invoice':'فاتورة'} ${escHtml(s.invoice_no)}</h3>
-      <div class="sub">${fmtDate(s.ts)} ${s.customer? '· '+escHtml(s.customer):''}</div>
+      <div class="sub">${fmtDate(s.ts)} ${s.customer? '· '+escHtml(s.customer):''} · <span class="pill ${s.channel==='store'?'pill-good':'pill-muted'}" style="display:inline-flex;">${s.channel==='store'?t('channel.store'):t('channel.warehouse')}</span></div>
       <table><thead><tr><th>${t('th.item')}</th><th class="num">${t('th.qty')}</th><th class="num">${t('th.price')}</th><th class="num">${t('th.total')}</th></tr></thead><tbody>
       ${s.items.map(it=>`<tr><td class="prod-name">${escHtml(it.name)}</td><td class="num">${fmtNum(it.qty)}</td><td class="num">${fmtNum(it.price)}</td><td class="num" style="font-weight:700;">${fmtNum(it.qty*it.price)}</td></tr>`).join('')}
       </tbody></table>
       <div class="picked" style="margin-top:14px;background:var(--surface-solid);border:1px solid var(--glass-border);"><span>${t('sale.total')}</span><b>${fmtNum(s.total)} SAR</b></div>
-      <div class="modal-actions"><button class="btn btn-ghost" data-close style="flex:1;">${t('close')}</button></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" data-close style="flex:1;">${t('close')}</button>
+        <button class="btn btn-accent" id="print-sale-btn">${icon('download',15)} ${t('print.printBtn')}</button>
+      </div>
     </div>
   </div>`;
+}
+function printInvoiceHtml(s){
+  const rowsHtml = s.items.map(it=>`<tr><td>${escHtml(it.name)}</td><td class="num">${fmtNum(it.qty)}</td><td class="num">${fmtNum(it.price)}</td><td class="num">${fmtNum(it.qty*it.price)}</td></tr>`).join('');
+  const dir = LANG==='ar'?'rtl':'ltr';
+  return `<!doctype html><html dir="${dir}" lang="${LANG}"><head><meta charset="utf-8" />
+  <title>${escHtml(t('print.invoiceTitle'))} ${escHtml(s.invoice_no)}</title>
+  <style>
+    @page { size: A4; margin: 18mm; }
+    body{ font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color:#1a1a1a; direction:${dir}; }
+    h1{ font-size:20px; margin:0 0 4px; }
+    .meta{ font-size:13px; color:#444; margin-bottom:18px; }
+    .meta div{ margin-bottom:3px; }
+    table{ width:100%; border-collapse:collapse; font-size:13px; }
+    th,td{ border:1px solid #ccc; padding:8px 10px; text-align:${dir==='rtl'?'right':'left'}; }
+    th{ background:#f3f3f3; }
+    td.num, th.num{ text-align:${dir==='rtl'?'left':'right'}; }
+    .total-row{ margin-top:16px; display:flex; justify-content:${dir==='rtl'?'flex-start':'flex-end'}; font-size:15px; font-weight:700; }
+    .dev-credit{ margin-top:40px; font-size:10px; color:#999; text-align:center; }
+  </style></head>
+  <body>
+    <h1>${escHtml(t('print.invoiceTitle'))} — ${escHtml(s.invoice_no)}</h1>
+    <div class="meta">
+      <div>${escHtml(t('print.date'))}: ${fmtDate(s.ts)}</div>
+      <div>${escHtml(t('print.customer'))}: ${escHtml(s.customer||'—')}</div>
+      <div>${escHtml(t('print.channel'))}: ${s.channel==='store'?escHtml(t('channel.store')):escHtml(t('channel.warehouse'))}</div>
+    </div>
+    <table><thead><tr><th>${escHtml(t('print.item'))}</th><th class="num">${escHtml(t('print.qty'))}</th><th class="num">${escHtml(t('print.price'))}</th><th class="num">${escHtml(t('print.total'))}</th></tr></thead>
+    <tbody>${rowsHtml}</tbody></table>
+    <div class="total-row">${escHtml(t('print.grandTotal'))}: ${fmtNum(s.total)} SAR</div>
+    <div class="dev-credit">Developed by Mohamed Emad</div>
+    <script>window.onload = function(){ window.print(); };<\/script>
+  </body></html>`;
+}
+function printSaleInvoice(s){
+  const win = window.open('', '_blank');
+  if(!win){ toast(t('toast.saveFailed'),'err'); return; }
+  win.document.open();
+  win.document.write(printInvoiceHtml(s));
+  win.document.close();
 }
 function userModal(){
   const editing = ui.modal.editUser;
@@ -1013,33 +1079,6 @@ function userModal(){
         <div class="seg"><button type="button" data-u-active="true" class="${editing.active?'active':''}">${t('settings.active')}</button><button type="button" data-u-active="false" class="${!editing.active?'active':''}">${t('settings.disabled')}</button></div>
       </div>`:''}
       <div class="modal-actions"><button class="btn btn-ghost" data-close>${t('cancel')}</button><button class="btn btn-accent" id="save-user">${icon('check',15)} ${t('user.save')}</button></div>
-    </div>
-  </div>`;
-}
-function bulkProductModal(){
-  const editing = ui.modal.editBulk;
-  const utype = ui.modal.unitType || (editing?editing.unit_type:'pallet');
-  return `
-  <div class="overlay" id="overlay-bg">
-    <div class="glass modal">
-      <button class="close-x" data-close>${icon('x',14)}</button>
-      <h3>${editing? t('bulk.editTitle') : t('bulk.addTitle')}</h3>
-      <div class="sub">${t('bulk.modalSub')}</div>
-      <div class="field"><label>${t('bulk.name')}</label><input id="bp-name" value="${escAttr(editing?editing.name:'')}" /></div>
-      <div class="field"><label>${t('th.category')}</label><input id="bp-cat" placeholder="${t('bulk.catPlaceholder')}" value="${escAttr(editing?editing.category:'')}" /></div>
-      <div class="field"><label>${t('bulk.unitType')}</label>
-        <div class="seg" id="bulk-type-seg">
-          <button type="button" data-btype="pallet" class="${utype==='pallet'?'active':''}">${t('bulk.pallet')}</button>
-          <button type="button" data-btype="carton" class="${utype==='carton'?'active':''}">${t('bulk.carton')}</button>
-        </div>
-      </div>
-      <div class="grid row-eq">
-        <div class="field"><label>${t('bulk.unitsPerBundle')}</label><input type="number" min="0" id="bp-units" value="${editing?editing.units_per_bundle:1}" /></div>
-        <div class="field"><label>${t('bulk.bundleCount')}</label><input type="number" min="0" id="bp-count" value="${editing?editing.bundle_count:0}" /></div>
-      </div>
-      <div class="field"><label>${t('bulk.refPrice')}</label><input type="number" min="0" id="bp-price" value="${editing&&editing.retail_price_ref!=null?editing.retail_price_ref:''}" /></div>
-      <div class="field"><label>${t('th.notes')}</label><input id="bp-notes" value="${escAttr(editing?(editing.notes||''):'')}" /></div>
-      <div class="modal-actions"><button class="btn btn-ghost" data-close>${t('cancel')}</button><button class="btn btn-accent" id="save-bulk">${icon('check',15)} ${t('save')}</button></div>
     </div>
   </div>`;
 }
@@ -1079,21 +1118,12 @@ async function onClick(e){
   const qm = e.target.closest('[data-quick-move]');
   if(qm){ const id=qm.getAttribute('data-quick-move'); const p=products.find(x=>x.id===id); ui.modal={type:'move',moveType:(p&&p.stock===null?'adjust':'out'),productId:id}; renderOverlay(); return; }
   if(e.target.closest('#open-add-product')){ ui.modal={type:'addProduct'}; renderOverlay(); return; }
-  if(e.target.closest('#open-sale')){ ui.modal={type:'sale', invoice_no: nextInvoiceNo(), customer:'', items:[{productId:null, search:'', qty:1, price:0}]}; renderOverlay(); return; }
+  if(e.target.closest('#open-sale')){ ui.modal={type:'sale', invoice_no: nextInvoiceNo(), customer:'', channel:'warehouse', items:[{productId:null, search:'', qty:1, price:0}]}; renderOverlay(); return; }
   if(e.target.closest('#open-user')){ ui.modal={type:'user', editUser:null}; renderOverlay(); return; }
-  if(e.target.closest('#open-bulk')){ ui.modal={type:'bulkProduct', editBulk:null, unitType:'pallet'}; renderOverlay(); return; }
-  const editBulkBtn = e.target.closest('[data-edit-bulk]');
-  if(editBulkBtn){ const b=bulkProducts.find(x=>x.id===editBulkBtn.getAttribute('data-edit-bulk')); ui.modal={type:'bulkProduct', editBulk:{...b}, unitType:b.unit_type}; renderOverlay(); return; }
-  const delBulkBtn = e.target.closest('[data-delete-bulk]');
-  if(delBulkBtn){
-    if(confirm(t('bulk.confirmDelete'))){
-      await api('/api/bulk-products/'+delBulkBtn.getAttribute('data-delete-bulk'), {method:'DELETE'});
-      bulkProducts = await api('/api/bulk-products'); updateView();
-    }
-    return;
-  }
-  const btype = e.target.closest('[data-btype]');
-  if(btype){ ui.modal.unitType = btype.getAttribute('data-btype'); renderOverlay(); return; }
+  const utypeBtn = e.target.closest('[data-utype]');
+  if(utypeBtn){ ui.modal.unitType = utypeBtn.getAttribute('data-utype'); renderOverlay(); return; }
+  const channelBtn = e.target.closest('[data-channel]');
+  if(channelBtn){ ui.modal.channel = channelBtn.getAttribute('data-channel'); renderOverlay(); return; }
   const editUserBtn = e.target.closest('[data-edit-user]');
   if(editUserBtn){ const u=users.find(x=>x.id===editUserBtn.getAttribute('data-edit-user')); ui.modal={type:'user', editUser:{...u}}; renderOverlay(); return; }
   const delUserBtn = e.target.closest('[data-delete-user]');
@@ -1129,8 +1159,8 @@ async function onClick(e){
   if(e.target.closest('#save-move')) return doSaveMove();
   if(e.target.closest('#save-add-product')) return doSaveAddProduct();
   if(e.target.closest('#save-sale')) return doSaveSale();
+  if(e.target.closest('#print-sale-btn')){ if(ui.modal && ui.modal.sale) printSaleInvoice(ui.modal.sale); return; }
   if(e.target.closest('#save-user')) return doSaveUser();
-  if(e.target.closest('#save-bulk')) return doSaveBulkProduct();
   if(e.target.closest('#export-products-xlsx') || e.target.closest('#export-products-xlsx-2')) return exportProductsXlsx();
   if(e.target.closest('#export-report-xlsx')) return exportReportXlsx();
   if(e.target.closest('#trigger-import-stock')){ const inp=document.getElementById('import-stock-input'); if(inp) inp.click(); return; }
@@ -1192,13 +1222,17 @@ async function doSaveMove(){
 }
 async function doSaveAddProduct(){
   const name = document.getElementById('np-name').value.trim();
-  const id = document.getElementById('np-id').value.trim();
+  const unit_type = ui.modal.unitType || 'piece';
+  const isBulkUnit = unit_type!=='piece';
+  let id = document.getElementById('np-id').value.trim();
   const category = document.getElementById('np-cat').value.trim() || 'غير مصنف';
   const price = Number(document.getElementById('np-price').value)||0;
   const qty = document.getElementById('np-qty').value;
-  if(!name || !id){ toast(t('add.sub'),'err'); return; }
+  const units_per_bundle = isBulkUnit ? (Number(document.getElementById('np-units-per-bundle')?.value)||1) : 1;
+  if(!name || (!id && !isBulkUnit)){ toast(t('add.sub'),'err'); return; }
+  if(!id && isBulkUnit){ id = 'LOC-' + Date.now(); }
   try{
-    await api('/api/products', {method:'POST', body: JSON.stringify({id, name, category, price, stock: qty===''?null:Number(qty)})});
+    await api('/api/products', {method:'POST', body: JSON.stringify({id, name, category, price, stock: qty===''?null:Number(qty), unit_type, units_per_bundle, salla_linked: !isBulkUnit})});
     ui.modal=null; toast(t('toast.productAdded'),'ok');
     await refreshAndRender();
   }catch(err){ toast(err.error==='product_exists'?t('toast.productExists'):t('toast.addFailed'),'err'); }
@@ -1217,8 +1251,9 @@ async function doSaveSale(){
     items.push({product_id, qty, price});
   }
   if(!invoice_no){ toast(t('toast.enterInvoiceNo'),'err'); return; }
+  const channel = ui.modal.channel==='store' ? 'store' : 'warehouse';
   try{
-    await api('/api/sales', {method:'POST', body: JSON.stringify({invoice_no, customer, items})});
+    await api('/api/sales', {method:'POST', body: JSON.stringify({invoice_no, customer, items, channel})});
     ui.modal=null; toast(t('toast.saleSaved'),'ok');
     await refreshAndRender();
   }catch(err){ toast(err.error==='invoice_no_taken'?t('toast.invoiceTaken'):t('toast.saleSaveFailed'),'err'); }
@@ -1243,25 +1278,6 @@ async function doSaveUser(){
     users = await api('/api/users'); renderOverlay(); updateView();
   }catch(err){ toast(err.error==='username_taken'?t('toast.usernameTaken'):t('toast.saveFailed'),'err'); }
 }
-async function doSaveBulkProduct(){
-  const editing = ui.modal.editBulk;
-  const name = document.getElementById('bp-name').value.trim();
-  const category = document.getElementById('bp-cat').value.trim();
-  const unit_type = ui.modal.unitType || (editing?editing.unit_type:'pallet');
-  const units_per_bundle = document.getElementById('bp-units').value;
-  const bundle_count = document.getElementById('bp-count').value;
-  const retail_price_ref = document.getElementById('bp-price').value;
-  const notes = document.getElementById('bp-notes').value.trim();
-  if(!name){ toast(t('toast.bulkNameRequired'),'err'); return; }
-  try{
-    const body = JSON.stringify({name, category, unit_type, units_per_bundle, bundle_count, retail_price_ref, notes});
-    if(editing) await api('/api/bulk-products/'+editing.id, {method:'PATCH', body});
-    else await api('/api/bulk-products', {method:'POST', body});
-    ui.modal=null; toast(t('toast.saved'),'ok');
-    bulkProducts = await api('/api/bulk-products'); renderOverlay(); updateView();
-  }catch(err){ toast(t('toast.saveFailed'),'err'); }
-}
-
 /* ============ EXCEL EXPORT / IMPORT ============ */
 function ensureXLSX(){
   if(typeof XLSX==='undefined'){ toast(t('toast.xlsxMissing'),'err'); return false; }

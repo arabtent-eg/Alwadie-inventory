@@ -5,10 +5,20 @@ const { requireSyncKey } = require('../auth');
 const router = express.Router();
 router.use(requireSyncKey);
 
-// Pending warehouse movements Claude still needs to push to Salla
+// Pending warehouse movements Claude still needs to push to Salla.
+// Movements on carton/pallet-only items (salla_linked = false) have no matching Salla SKU
+// and must never be pushed — they are marked synced here so they don't pile up as "pending" forever.
 router.get('/pending', async (req, res) => {
+  await pool.query(
+    `UPDATE movements SET synced = true, sync_error = NULL
+     WHERE synced = false AND product_id IN (SELECT id FROM products WHERE salla_linked = false)`
+  );
   const { rows } = await pool.query(
-    `SELECT id, product_id, type, qty, note, ts FROM movements WHERE synced = false ORDER BY ts ASC LIMIT 200`
+    `SELECT m.id, m.product_id, m.type, m.qty, m.note, m.ts
+     FROM movements m
+     JOIN products p ON p.id = m.product_id
+     WHERE m.synced = false AND p.salla_linked = true
+     ORDER BY m.ts ASC LIMIT 200`
   );
   res.json(rows);
 });

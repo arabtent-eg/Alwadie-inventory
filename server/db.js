@@ -29,8 +29,19 @@ CREATE TABLE IF NOT EXISTS products (
   status TEXT NOT NULL DEFAULT 'sale',
   stock NUMERIC,
   threshold NUMERIC NOT NULL DEFAULT 10,
+  unit_type TEXT NOT NULL DEFAULT 'piece' CHECK (unit_type IN ('piece','carton','pallet')),
+  units_per_bundle NUMERIC NOT NULL DEFAULT 1,
+  salla_linked BOOLEAN NOT NULL DEFAULT true,
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- idempotent upgrade path for a database created before these columns existed
+ALTER TABLE products ADD COLUMN IF NOT EXISTS unit_type TEXT NOT NULL DEFAULT 'piece';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS units_per_bundle NUMERIC NOT NULL DEFAULT 1;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS salla_linked BOOLEAN NOT NULL DEFAULT true;
+DO $$ BEGIN
+  ALTER TABLE products ADD CONSTRAINT products_unit_type_check CHECK (unit_type IN ('piece','carton','pallet'));
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
 CREATE TABLE IF NOT EXISTS movements (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -53,8 +64,14 @@ CREATE TABLE IF NOT EXISTS sales (
   invoice_no TEXT NOT NULL UNIQUE,
   customer TEXT,
   total NUMERIC NOT NULL DEFAULT 0,
+  channel TEXT NOT NULL DEFAULT 'warehouse' CHECK (channel IN ('store','warehouse')),
   created_by UUID REFERENCES users(id)
 );
+ALTER TABLE sales ADD COLUMN IF NOT EXISTS channel TEXT NOT NULL DEFAULT 'warehouse';
+DO $$ BEGIN
+  ALTER TABLE sales ADD CONSTRAINT sales_channel_check CHECK (channel IN ('store','warehouse'));
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
 CREATE TABLE IF NOT EXISTS sale_items (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

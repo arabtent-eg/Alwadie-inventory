@@ -23,20 +23,21 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', requireRole('manager', 'accountant'), async (req, res) => {
-  const { invoice_no, customer, items } = req.body || {};
+  const { invoice_no, customer, items, channel } = req.body || {};
   if (!invoice_no || !Array.isArray(items) || !items.length) {
     return res.status(400).json({ error: 'invalid_input' });
   }
   for (const it of items) {
     if (!it.product_id || !it.qty || it.qty <= 0) return res.status(400).json({ error: 'invalid_item' });
   }
+  const ch = ['store', 'warehouse'].includes(channel) ? channel : 'warehouse';
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     let total = 0;
     const { rows: saleRows } = await client.query(
-      `INSERT INTO sales (invoice_no, customer, total, created_by) VALUES ($1,$2,0,$3) RETURNING *`,
-      [invoice_no, customer || null, req.user.id]
+      `INSERT INTO sales (invoice_no, customer, total, channel, created_by) VALUES ($1,$2,0,$3,$4) RETURNING *`,
+      [invoice_no, customer || null, ch, req.user.id]
     );
     const sale = saleRows[0];
     for (const it of items) {

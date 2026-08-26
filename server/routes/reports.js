@@ -6,12 +6,23 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get('/summary', async (req, res) => {
-  const [{ rows: pr }, { rows: mr }, { rows: sr }] = await Promise.all([
+  const [{ rows: pr }, { rows: mr }, { rows: sr }, { rows: cr }] = await Promise.all([
     pool.query('SELECT count(*)::int AS total, COALESCE(sum(stock),0)::numeric AS qty, count(*) FILTER (WHERE stock IS NOT NULL)::int AS inventoried, count(*) FILTER (WHERE stock IS NOT NULL AND stock <= threshold)::int AS low FROM products'),
     pool.query("SELECT count(*)::int AS today_moves FROM movements WHERE ts::date = now()::date"),
     pool.query("SELECT count(*)::int AS today_sales, COALESCE(sum(total),0)::numeric AS today_total FROM sales WHERE ts::date = now()::date"),
+    pool.query(`
+      SELECT s.channel,
+        count(DISTINCT s.id)::int AS invoices,
+        COALESCE(sum(si.qty),0)::numeric AS qty,
+        COALESCE(sum(si.qty * si.price),0)::numeric AS value
+      FROM sales s JOIN sale_items si ON si.sale_id = s.id
+      WHERE s.ts::date = now()::date
+      GROUP BY s.channel
+    `),
   ]);
   const { rows: syncRows } = await pool.query("SELECT value FROM settings WHERE key = 'last_sync_at'");
+  const byChannel = { store: { invoices: 0, qty: 0, value: 0 }, warehouse: { invoices: 0, qty: 0, value: 0 } };
+  for (const row of cr) { if (byChannel[row.channel]) byChannel[row.channel] = { invoices: row.invoices, qty: row.qty, value: row.value }; }
   res.json({
     total_products: pr[0].total,
     total_qty: pr[0].qty,
@@ -20,6 +31,8 @@ router.get('/summary', async (req, res) => {
     today_moves: mr[0].today_moves,
     today_sales_count: sr[0].today_sales,
     today_sales_total: sr[0].today_total,
+    today_store_out: byChannel.store,
+    today_warehouse_out: byChannel.warehouse,
     last_sync_at: syncRows[0] ? syncRows[0].value : null,
   });
 });
