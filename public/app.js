@@ -349,6 +349,7 @@ function renderLogin(){
         <div class="field"><label>${t('password')}</label><input id="login-password" type="password" autocomplete="current-password" required /></div>
         <button class="btn btn-accent" type="submit">${icon('lock',15)} ${t('loginBtn')}</button>
       </form>
+      <div class="dev-credit">Developed by Mohamed Emad</div>
     </div>
   </div>`;
   document.getElementById('login-form').addEventListener('submit', async (e)=>{
@@ -414,6 +415,7 @@ function renderShellHTML(){
     </div>
     <div id="view">${renderView()}</div>
     <div class="footer-note">${t('footerNote')}</div>
+    <div class="dev-credit">Developed by Mohamed Emad</div>
   </div>`;
 }
 function renderShell(){
