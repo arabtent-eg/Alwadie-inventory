@@ -1,12 +1,12 @@
 
   :root{
     color-scheme: light;
-    --bg: #f4f0e6;
-    --bg-plane: #eee9db;
-    --surface: rgba(255,255,255,.60);
-    --surface-solid: #fffdf9;
-    --glass-hi: rgba(255,255,255,.75);
-    --glass-border: rgba(16,24,38,.09);
+    --bg: #f5f5f7;
+    --bg-plane: #e8eaed;
+    --surface: rgba(255,255,255,.62);
+    --surface-solid: #ffffff;
+    --glass-hi: rgba(255,255,255,.8);
+    --glass-border: rgba(16,24,38,.08);
     --ink: #101826;
     --ink-2: #545f70;
     --ink-3: #8b93a1;
@@ -66,16 +66,16 @@
   body{
     background:var(--bg-plane);
     color:var(--ink);
-    font-family:"IBM Plex Sans Arabic","Noto Kufi Arabic",system-ui,sans-serif;
+    font-family:"Cairo","IBM Plex Sans Arabic","Noto Kufi Arabic",system-ui,sans-serif;
     min-height:100vh;
     font-variant-numeric: tabular-nums;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.display{font-family:"Noto Kufi Arabic",system-ui,sans-serif;text-wrap:balance;}
-  .bg-ambient{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-  .bg-ambient::before,.bg-ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;}
-  .bg-ambient::before{width:640px;height:640px;background:var(--navy);top:-220px;inset-inline-end:-160px;}
-  .bg-ambient::after{width:520px;height:520px;background:var(--accent);bottom:-220px;inset-inline-start:-140px;opacity:.20;}
+  h1,h2,h3,.display{font-family:"Cairo",system-ui,sans-serif;text-wrap:balance;}
+  .bg-ambient{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:var(--bg);}
+  .bg-ambient::before,.bg-ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(120px);}
+  .bg-ambient::before{width:680px;height:680px;background:var(--navy);top:-260px;inset-inline-end:-180px;opacity:.10;}
+  .bg-ambient::after{width:560px;height:560px;background:var(--accent);bottom:-240px;inset-inline-start:-160px;opacity:.10;}
   .shell{position:relative;z-index:1;display:flex;min-height:100vh;}
   ::selection{background:var(--accent-soft);}
   a{color:inherit;}
@@ -96,7 +96,7 @@
   }
   .brand{display:flex;align-items:center;gap:12px;padding:6px 10px 14px;}
   .brand-mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;flex:none;box-shadow:var(--shadow);}
-  .brand-name{font-family:"Noto Kufi Arabic";font-weight:700;font-size:15px;line-height:1.3;}
+  .brand-name{font-family:"Cairo";font-weight:700;font-size:15px;line-height:1.3;}
   .brand-sub{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
   .nav{display:flex;flex-direction:column;gap:7px;padding:10px;flex:1;}
   .nav-item{
@@ -176,7 +176,7 @@
   .kpi-top{display:flex;align-items:center;justify-content:space-between;}
   .kpi-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);flex:none;}
   .kpi-icon svg{width:18px;height:18px;}
-  .kpi-val{font-size:26px;font-weight:700;font-family:"Noto Kufi Arabic";}
+  .kpi-val{font-size:26px;font-weight:700;font-family:"Cairo";}
   .kpi-label{font-size:12.5px;color:var(--ink-2);}
   .card{padding:20px;}
   .card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;}
@@ -302,7 +302,8 @@
   .perf-note{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3);margin-top:10px;}
   .perf-note svg{width:13px;height:13px;flex:none;}
   .footer-note{font-size:11px;color:var(--ink-3);text-align:center;margin-top:28px;line-height:1.8;}
-  .dev-credit{font-size:10px;color:var(--ink-3);opacity:0.65;text-align:center;margin-top:4px;direction:ltr;font-family:'IBM Plex Sans Arabic',sans-serif;}
+  .dev-credit{font-size:9.5px;font-weight:300;letter-spacing:.06em;color:var(--ink-3);opacity:0.6;text-align:start;margin-top:2px;direction:ltr;font-family:'Cairo',sans-serif;}
+  .brand-credit{margin-top:1px;}
 
   /* ---------- brand logo (light/dark aware) ---------- */
   .brand-mark{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;}
@@ -345,5 +346,5 @@
   .unit-carton{background:var(--c1);color:#fff;opacity:.88;}
 
   /* ---------- ltr (English) typography ---------- */
-  [dir="ltr"] body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;}
-  [dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3,[dir="ltr"] .display{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
+  [dir="ltr"] body{font-family:"Cairo","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;}
+  [dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3,[dir="ltr"] .display{font-family:"Cairo",system-ui,-apple-system,"Segoe UI",sans-serif;}

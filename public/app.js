@@ -386,7 +386,8 @@ function renderLogin(){
     <div class="glass login-card">
       <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:16px;">${langToggleHtml()}${themeToggleHtml()}</div>
       <div class="login-mark has-logo">${logoFullHtml()}</div>
-      <h1 style="font-size:14.5px;color:var(--ink-2);font-weight:600;">${t('systemTitle')}</h1>
+      <div class="dev-credit" style="text-align:center;">DEVELOPER BY MOHAMED AMER</div>
+      <h1 style="font-size:14.5px;color:var(--ink-2);font-weight:600;margin-top:10px;">${t('systemTitle')}</h1>
       <div class="sub">${t('loginSub')}</div>
       <div class="login-err" id="login-err"></div>
       <form id="login-form">
@@ -394,7 +395,6 @@ function renderLogin(){
         <div class="field"><label>${t('password')}</label><input id="login-password" type="password" autocomplete="current-password" required /></div>
         <button class="btn btn-accent" type="submit">${icon('lock',15)} ${t('loginBtn')}</button>
       </form>
-      <div class="dev-credit">Developed by Mohamed Emad</div>
     </div>
   </div>`;
   document.getElementById('login-form').addEventListener('submit', async (e)=>{
@@ -441,7 +441,7 @@ function renderShellHTML(){
   <div class="sidebar glass">
     <div class="brand">
       <div class="brand-mark has-logo">${logoMarkHtml()}</div>
-      <div><div class="brand-name">${escHtml(t('appName'))}</div><div class="brand-sub">${t('appSub')}</div></div>
+      <div><div class="brand-name">${escHtml(t('appName'))}</div><div class="brand-sub">${t('appSub')}</div><div class="dev-credit brand-credit">DEVELOPER BY MOHAMED AMER</div></div>
     </div>
     <div class="nav">${navHtml}</div>
     <div class="nav-foot">
@@ -464,7 +464,6 @@ function renderShellHTML(){
     </div>
     <div id="view">${renderView()}</div>
     <div class="footer-note">${t('footerNote')}</div>
-    <div class="dev-credit">Developed by Mohamed Emad</div>
   </div>`;
 }
 function renderShell(){
@@ -1089,7 +1088,7 @@ function printInvoiceHtml(s){
     <table><thead><tr><th>${escHtml(t('print.item'))}</th><th class="num">${escHtml(t('print.qty'))}</th><th class="num">${escHtml(t('print.price'))}</th><th class="num">${escHtml(t('print.total'))}</th></tr></thead>
     <tbody>${rowsHtml}</tbody></table>
     <div class="total-row">${escHtml(t('print.grandTotal'))}: ${fmtNum(s.total)} SAR</div>
-    <div class="dev-credit">Developed by Mohamed Emad</div>
+    <div class="dev-credit">DEVELOPER BY MOHAMED AMER</div>
     <script>window.onload = function(){ window.print(); };<\/script>
   </body></html>`;
 }
