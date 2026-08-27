@@ -29,6 +29,8 @@ const ICONS = {
   storeline:'M3 9.5 4.5 4h15L21 9.5M4 9.5V20h16V9.5M4 9.5h16M10 20v-6h4v6',
   layers:'M12 3 2 8l10 5 10-5-10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5',
   globe:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9ZM3.3 9h17.4M3.3 15h17.4',
+  sun:'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1',
+  moon:'M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z',
 };
 function icon(name, size=18){
   const d = ICONS[name] || ICONS.box;
@@ -54,6 +56,7 @@ const I18N = {
     'title.store':'أداء المتجر على سلة','title.reports':'التقارير والإحصائيات','title.sync':'مزامنة سلة','title.bulk':'أصناف الجملة (باله / كرتون)',
     'role.manager':'مدير','role.accountant':'محاسب','role.user':'مستخدم',
     'sidebar.syncedAll':'كل الحركات متزامنة', 'sidebar.pendingSync':'{n} حركة بانتظار المزامنة', logout:'تسجيل الخروج',
+    'theme.toggle':'تبديل الوضع الفاتح/الداكن', 'lang.toggle':'Switch to English',
     searchPlaceholder:'ابحث عن صنف بالاسم…', recordMove:'تسجيل حركة',
     welcome:'أهلاً بك، {name}',
     footerNote:'مؤسسة وادي الخيام — نظام داخلي لإدارة مخزون المستودع · مزامَن تلقائياً مع سلة',
@@ -154,6 +157,7 @@ const I18N = {
     'title.store':'Store Performance on Salla','title.reports':'Reports & Analytics','title.sync':'Salla Sync','title.bulk':'Bulk Items (Pallet / Carton)',
     'role.manager':'Manager','role.accountant':'Accountant','role.user':'User',
     'sidebar.syncedAll':'All movements synced', 'sidebar.pendingSync':'{n} movement(s) pending sync', logout:'Log Out',
+    'theme.toggle':'Toggle light/dark mode', 'lang.toggle':'التبديل للعربية',
     searchPlaceholder:'Search for an item by name…', recordMove:'Record Movement',
     welcome:'Welcome back, {name}',
     footerNote:'Wadie Alkhiam Est. — Internal warehouse inventory system · Auto-synced with Salla',
@@ -265,6 +269,35 @@ function setLang(l){
   applyLangAttrs();
   if(me) renderShell(); else renderLogin();
 }
+
+/* ============ THEME (light/dark) ============ */
+let THEME = 'system';
+function effectiveTheme(){
+  if(THEME==='light'||THEME==='dark') return THEME;
+  try{ return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  catch(e){ return 'light'; }
+}
+function initTheme(){
+  try{ THEME = localStorage.getItem('wadi_theme') || 'system'; }catch(e){ THEME = 'system'; }
+  applyThemeAttrs();
+}
+function applyThemeAttrs(){
+  if(THEME==='light'||THEME==='dark') document.documentElement.setAttribute('data-theme', THEME);
+  else document.documentElement.removeAttribute('data-theme');
+}
+function toggleTheme(){
+  THEME = effectiveTheme()==='dark' ? 'light' : 'dark';
+  try{ localStorage.setItem('wadi_theme', THEME); }catch(e){}
+  applyThemeAttrs();
+  if(me) renderShell(); else renderLogin();
+}
+function themeToggleHtml(){
+  const isDark = effectiveTheme()==='dark';
+  return `<button type="button" class="glass-btn" id="theme-toggle-btn" title="${t('theme.toggle')}">${icon(isDark?'sun':'moon',17)}</button>`;
+}
+function langToggleCompactHtml(){
+  return `<button type="button" class="glass-btn" id="lang-toggle-btn" title="${t('lang.toggle')}">${icon('globe',17)}</button>`;
+}
 function tabTitle(key){
   return {
     dashboard:t('nav.dashboard'), stock:t('nav.stock'), sales:t('nav.sales'), movements:t('nav.movements'),
@@ -318,6 +351,7 @@ function logoFullHtml(){
 /* ============ BOOT ============ */
 async function boot(){
   initLang();
+  initTheme();
   await loadLogo();
   try{
     me = await api('/api/auth/me');
@@ -350,7 +384,7 @@ function renderLogin(){
   appEl.innerHTML = `
   <div class="login-shell">
     <div class="glass login-card">
-      <div style="display:flex;justify-content:center;margin-bottom:16px;">${langToggleHtml()}</div>
+      <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:16px;">${langToggleHtml()}${themeToggleHtml()}</div>
       <div class="login-mark has-logo">${logoFullHtml()}</div>
       <h1 style="font-size:14.5px;color:var(--ink-2);font-weight:600;">${t('systemTitle')}</h1>
       <div class="sub">${t('loginSub')}</div>
@@ -379,6 +413,8 @@ function renderLogin(){
     }
   });
   document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click', ()=>setLang(b.getAttribute('data-lang'))));
+  const loginTh = document.getElementById('theme-toggle-btn');
+  if(loginTh) loginTh.addEventListener('click', toggleTheme);
 }
 
 /* ============ NAV / SHELL ============ */
@@ -409,10 +445,8 @@ function renderShellHTML(){
     </div>
     <div class="nav">${navHtml}</div>
     <div class="nav-foot">
-      ${langToggleHtml()}
       <div class="role-chip"><span class="dot"></span>${escHtml(me.display_name)} · ${roleLabel(me.role)}</div>
       <div class="role-chip">${icon('sync2',13)} ${unsynced>0? t('sidebar.pendingSync',{n:unsynced}) : t('sidebar.syncedAll')}</div>
-      <button class="btn btn-sm btn-ghost" id="logout-btn" style="justify-content:flex-start;">${icon('logout',14)} ${t('logout')}</button>
     </div>
   </div>
   <div class="main">
@@ -420,6 +454,11 @@ function renderShellHTML(){
       <h1>${tabTitle(ui.tab)}</h1>
       <div class="topbar-actions">
         <div class="search-box">${icon('search',15)}<input id="global-search" placeholder="${t('searchPlaceholder')}" value="${escAttr(ui.search)}" /></div>
+        <div class="icon-actions">
+          ${themeToggleHtml()}
+          ${langToggleCompactHtml()}
+          <button type="button" class="glass-btn" id="logout-btn" title="${t('logout')}">${icon('logout',17)}</button>
+        </div>
         <button class="btn btn-accent" id="open-move" ${canWrite()?'':'disabled'}>${icon('plus',16)} ${t('recordMove')}</button>
       </div>
     </div>
@@ -441,6 +480,10 @@ function wireTopbar(){
   if(s) s.addEventListener('input', e=>{ ui.search = e.target.value; updateView(); });
   const lo = document.getElementById('logout-btn');
   if(lo) lo.addEventListener('click', async ()=>{ await api('/api/auth/logout', {method:'POST'}); me=null; renderLogin(); });
+  const th = document.getElementById('theme-toggle-btn');
+  if(th) th.addEventListener('click', toggleTheme);
+  const lg = document.getElementById('lang-toggle-btn');
+  if(lg) lg.addEventListener('click', ()=>setLang(LANG==='ar'?'en':'ar'));
   document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click', ()=>setLang(b.getAttribute('data-lang'))));
 }
 function updateView(){ const v=document.getElementById('view'); if(v) v.innerHTML = renderView(); }
